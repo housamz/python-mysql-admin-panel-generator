@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <blockquote class="card-blockquote">
+                        <h1>Python MAGE :: MySQL Admin Generator</h1>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form id="allData">
+                        <div class="col-lg-9">
+                            <p>MAGE<sup>*</sup> is a Python Flask tool that helps you create a Python Flask Admin Panel for any MySQL database in seconds.</p>
+                            <p class="hidden-first">To start, please insert your MySQL server info below:</p>
+                            <p class="hidden-first hide">Please select your database from below menu:</p>
+                            <fieldset>
+                                <legend class="hidden-first">Server Info</legend>
+                                <div class="form-group hidden-first">
+                                    {{ form.host.label }}<br>
+                                    {{ form.host(class="form-control", id="inputHost", autocomplete="on", value="localhost") }}<br>
+                                    {% for error in form.host.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                    <small id="hostHelp" class="form-text text-muted">Your server address, e.g. localhost</small>
+                                </div>
+                                <div class="form-group hidden-first">
+                                    {{ form.username.label }}<br>
+                                    {{ form.username(class="form-control", id="inputUsername", utocomplete="on", value="root") }}<br>
+                                    {% for error in form.username.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                    <small id="usernameHelp" class="form-text text-muted">Database username, e.g. root</small>
+                                </div>
+                                <div class="form-group hidden-first">
+                                    {{ form.password.label }}<br>
+                                    {{ form.password(class="form-control", id="inputPassword", value="rootroot") }}<br>
+                                    {% for error in form.password.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+
+
+                                <div class="form-group hidden-first hide">
+                                    <legend for="dbSelect">Available Databases</legend>
+                                    {{ form.databases.label }}<br>
+                                    {{ form.databases(class="form-control", id="dbSelect") }}<br>
+                                </div>
+
+                                <div class="form-group hidden-first hide">
+                                    <legend for="createUsers">Options</legend>
+
+                                    {{ form.create_users(id="createUsers", value="createTable") }} {{ form.create_users.label }}<br>
+                                    <small id="createUserHelp" class="form-text text-muted">
+                                        Enabling this will create a table called 'users' in the database and add a user with credentials:<br>
+                                        Email: admin@example.org<br>
+                                        Password: admin
+                                    </small>
+                                </div>
+
+
+
+                                {{ form.generate_button(class="btn btn-primary hidden-first hide", id="generate") }}
+
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-3 alert alert-warning">
+
+                            <h3>Disclaimer</h3>
+                            Mage:
+                            <ul class="warning-list">
+                                <li>Doesn't provide a secure CRUD system. The goal of this tool is to make a fast admin panel to control a MySQL database, but securing that is your own responsibility.</li>
+                                <li>This will modify and may harm your MySQL database, so keep a backup. </li>
+                                <li>Gets confused if a table has multiple Primary keys.</li>
+                                <li>Has a generic app secret key, so don't forget to change it.</li>
+                            </ul>
+                            <br>
+
+                            {{ form.connect_button(class="btn btn-primary hidden-first center-block", id="connect") }}
+                        </div>
+                    </form>
+
+                    <div class="clearfix"></div><br>
+                    <div class="col-lg-12">
+                        <small class="text-muted">
+                            <strong>* meɪdʒ</strong>
+                            <em>noun: mage; plural noun: mages</em>
+                            <strong>a magician or learned person.</strong>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

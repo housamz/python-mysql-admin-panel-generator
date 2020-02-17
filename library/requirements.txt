@@ -1,0 +1,8 @@
+Click==7.0
+Flask==1.1.1
+Flask-MySQL==1.5.1
+itsdangerous==1.1.0
+Jinja2==2.11.1
+MarkupSafe==1.1.1
+PyMySQL==0.9.3
+Werkzeug==1.0.0

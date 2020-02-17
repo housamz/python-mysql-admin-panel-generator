@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<table class="table table-striped">
+		<tr>
+			<th class="not">Table</th>
+			<th class="not">Entries</th>
+		</tr>
+
+		{% for table_name, table_count in tables_and_counts %}
+		<tr>
+			<td><a href="./{{table_name}}">{{table_name|capitalize}}</a></td>
+			<td>{{ table_count }}</td>
+		</tr>
+		{% endfor %}
+
+</table>
+{% endblock %}
