@@ -2,7 +2,7 @@ Click==7.0
 Flask==1.1.1
 Flask-WTF==0.14.3
 itsdangerous==1.1.0
-Jinja2==2.11.1
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 PyMySQL==0.9.3
 python-dotenv==0.11.0
