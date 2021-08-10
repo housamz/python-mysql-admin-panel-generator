@@ -137,7 +137,8 @@ def generate_mage(mysql, create_users):
 
 	# the generation process starts here
 	# adding the basic structure of app.py
-	the_app = """from flask import Flask, render_template, request, redirect, session, url_for
+	the_app = """import hashlib
+from flask import Flask, render_template, request, redirect, session, url_for
 from flaskext.mysql import MySQL
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -405,7 +406,7 @@ def login_handler():
 		data = fetch_one(mysql, "users", "email", email)
 		
 		if data and len(data) > 0:
-			if check_password_hash(data[3], password):
+			if check_password_hash(data[3], password) or hashlib.md5(password.encode('utf-8')).hexdigest() == data[3]:
 				session['authorised'] = 'authorised',
 				session['id'] = data[0]
 				session['name'] = data[1]
